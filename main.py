@@ -6,7 +6,7 @@ import os
 
 # Set up BigQuery client
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account.json"  # Path to your service account
-project_id=""
+project_id="djamo-assessment-test"
 client = bigquery.Client()
 
 # Queries for analysis
