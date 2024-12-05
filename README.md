@@ -2,26 +2,18 @@
 
 This project analyzes transaction data stored in BigQuery and visualizes the results in an interactive dashboard built using Dash. It provides insights such as Monthly Active Users (MAU), churn rate, top merchants by age bracket, and transaction seasonality.
 
----
-
 ## **Features**
 
 1. **Monthly Active Users (MAU):**
    - Calculates the number of unique active users per month based on transactions.
-
 2. **Churn Analysis:**
    - Identifies churned customers each month and calculates the churn rate.
-
 3. **Top Merchants by Age Bracket:**
    - Groups clients by age brackets and lists the top 5 merchants by transaction volume for each bracket.
-
 4. **Transaction Seasonality:**
    - Identifies the busiest days and hours for transactions.
-
 5. **Interactive Dashboard:**
    - Visualizes all the above metrics dynamically.
-
----
 
 ## **Dataset Schema**
 
@@ -83,47 +75,37 @@ The project uses the BigQuery dataset `data_test_senior_analyst`, which contains
 | `avatarUpdatedAt`     | Timestamp when the avatar was last updated.            |
 | `emailIsVerified`     | Indicates if the client's email is verified (`TRUE`/`FALSE`). |
 
----
-
 ## **Setup Instructions**
 
 ### Prerequisites
-
 1. **Google Cloud Project** with BigQuery enabled.
 2. **Python 3.7+** installed.
 3. **Google Cloud SDK** installed ([instructions here](https://cloud.google.com/sdk/docs/install)).
 4. A service account key file (`service-account.json`).
 
 ### Authenticate with BigQuery
-
 1. Run the following command to authenticate:
    ```bash
    gcloud auth application-default login
-## Place the service-account.json file in the project directory.
-Set the GOOGLE_APPLICATION_CREDENTIALS environment variable:
-
-export GOOGLE_APPLICATION_CREDENTIALS="service-account.json"
-## Install Dependencies
-## Install Python dependencies from the requirements.txt file:
-
-
-pip install -r requirements.txt
-# Run the Application
-## Execute the main script to launch the dashboard:
-
-
-python main.py
- ##  Open your browser and navigate to the local server (default: http://127.0.0.1:8050/).
+### Service Account Setup
+1. **Place the `service-account.json` file** in the project directory.
+2. **Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable:**
+   ```bash
+   export GOOGLE_APPLICATION_CREDENTIALS="service-account.json"
+### 2.3 Install Dependencies
+1. Install Python dependencies from the `requirements.txt` file:
+   ```bash
+   pip install -r requirements.txt
+### Run the Application
+1. Execute the main script to launch the dashboard:
+   ```bash
+   python main.py
 ## Key Features and Visualizations
-Monthly Active Users (MAU):
 
-Bar chart displaying monthly active users.
-Churn Rate:
+- **Monthly Active Users (MAU):** Bar chart displaying the number of unique active users per month.
+- **Churn Rate:** Line chart showing the percentage of churned customers each month.
+- **Top Merchants by Age Bracket:** Grouped bar chart showcasing the top merchants for each age bracket.
+- **Transaction Seasonality:** Heatmap highlighting the busiest days and hours for transactions.
 
-Line chart showing the percentage of churned customers each month.
-Top Merchants by Age Bracket:
 
-Grouped bar chart showcasing top merchants for each age bracket.
-Transaction Seasonality:
 
-Heatmap highlighting the busiest days and hours for transactions.
