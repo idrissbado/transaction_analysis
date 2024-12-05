@@ -6,7 +6,7 @@ import os
 
 # Set up BigQuery client
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account.json"  # Path to your service account
-project_id="djamo-assessment-test"
+
 client = bigquery.Client()
 
 # Queries for analysis
@@ -16,7 +16,7 @@ queries = {
             SELECT
                 DATE_TRUNC(issueddate, MONTH) AS month,
                 accountid
-            FROM `project_id.data_test_senior_analyst.transactions`
+            FROM `djamo-assessment-test.data_test_senior_analyst.transactions`
             WHERE status = 'completed' AND isactive = TRUE
             GROUP BY 1, 2
         )
@@ -32,7 +32,7 @@ queries = {
             SELECT
                 DATE_TRUNC(issueddate, MONTH) AS month,
                 accountid
-            FROM `project_id.data_test_senior_analyst.transactions`
+            FROM `djamo-assessment-test.data_test_senior_analyst.transactions`
             WHERE status = 'completed' AND isactive = TRUE
             GROUP BY 1, 2
         ),
@@ -72,8 +72,8 @@ queries = {
                 clients.id AS client_id,
                 profiles.placeofbirth,
                 DATE_PART('year', AGE(clients.createdat)) AS age
-            FROM `project_id.data_test_senior_analyst.clients` AS clients
-            JOIN `project_id.data_test_senior_analyst.profiles` AS profiles
+            FROM `djamo-assessment-test.data_test_senior_analyst.clients` AS clients
+            JOIN `djamo-assessment-test.data_test_senior_analyst.profiles` AS profiles
             ON clients.profileid = profiles.id
         ),
         age_brackets AS (
@@ -92,8 +92,8 @@ queries = {
                 transactions.merchantname,
                 age_brackets.age_bracket,
                 SUM(transactions.chargedamount) AS total_volume
-            FROM `project_id.data_test_senior_analyst.transactions` AS transactions
-            JOIN `project_id.data_test_senior_analyst.accounts` AS accounts
+            FROM `djamo-assessment-test.data_test_senior_analyst.transactions` AS transactions
+            JOIN `djamo-assessment-test.data_test_senior_analyst.accounts` AS accounts
             ON transactions.accountid = accounts.id
             JOIN age_brackets
             ON accounts.clientid = age_brackets.client_id
