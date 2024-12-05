@@ -16,7 +16,7 @@ queries = {
             SELECT
                 DATE_TRUNC(issueddate, MONTH) AS month,
                 accountid
-            FROM `your_project_id.data_test_senior_analyst.transactions`
+            FROM `project_id.data_test_senior_analyst.transactions`
             WHERE status = 'completed' AND isactive = TRUE
             GROUP BY 1, 2
         )
