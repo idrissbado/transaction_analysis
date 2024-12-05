@@ -5,7 +5,7 @@ from dash import dcc, html
 import os
 
 # Set up BigQuery client
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account.json"  # Path to your service account
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service-account.json"  # Path  service account
 
 client = bigquery.Client()
 
